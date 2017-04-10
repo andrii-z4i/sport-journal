@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFire, FirebaseListObservable } from "angularfire2";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  items: FirebaseListObservable<any[]>;
   title = 'app works!';
+  
+  constructor(angularFireBase: AngularFire) {
+    this.items = angularFireBase.database.list('/items');
+  }
 }
