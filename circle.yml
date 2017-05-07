@@ -1,2 +1,16 @@
 general:
   build_dir: sport-journal
+
+machine:
+  node:
+    version: 6
+
+dependencies:
+  pre:
+    - npm install -g yarn@0.23.4
+  override:
+    - yarn install
+
+test:
+  override:
+    - yarn test
