@@ -36,8 +36,8 @@ module.exports = function (config) {
               ? ['progress', 'coverage-istanbul']
               : ['progress', 'junit'],
     junitReporter: {
-      outputDir: 'testResults', // results will be saved as $outputDir/$browserName.xml 
-      outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile 
+      outputDir: process.env.JUNIT_REPORT_PATH,
+      outputFile: process.env.JUNIT_REPORT_NAME,
       suite: '', // suite will become the package name attribute in xml testsuite element 
       useBrowserName: false, // add browser name to report and classes names 
       nameFormatter: undefined, // function (browser, result) to customize the name attribute in xml testcase element 
