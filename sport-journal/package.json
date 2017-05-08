@@ -7,6 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test --single-run --reporters junit,dots",
+    "test2": "ng test --reporters junit,dots",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

@@ -5,8 +5,8 @@ import { Observable } from "rxjs/Rx";
 
 let fireBaseItemsStub = { list: () => {}};
 let fireBaseMock = Observable.of([
-  { 'a': 'b'},
-  { 'c': 'd'}
+  { $value: 'b', $key: 'a'},
+  { $value: 'd', $key: 'c'}
 ]);
 
 describe('AppComponent', () => {
