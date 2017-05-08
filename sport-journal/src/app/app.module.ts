@@ -1,3 +1,4 @@
+import { DatabaseService } from './services/database.service';
 import { firebaseConfig } from './firebase.configuration';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,7 +22,9 @@ import { AppComponent } from './app.component';
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
   ],
-  providers: [],
+  providers: [
+    DatabaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
