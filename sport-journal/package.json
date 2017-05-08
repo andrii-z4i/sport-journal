@@ -7,6 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test --single-run --reporters junit,dots",
+    "test2": "ng test --reporters junit,dots",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -20,7 +21,9 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "angularfire2": "^4.0.0-rc.0",
     "core-js": "^2.4.1",
+    "firebase": "^3.7.5",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
