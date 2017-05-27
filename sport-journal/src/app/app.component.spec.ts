@@ -1,20 +1,28 @@
-import { DatabaseService } from './services/database.service';
+import { DatabaseServiceInterface } from './services/database.service.interface';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { Observable } from "rxjs/Rx";
 
-let dataBaseServiceStub = { GetUserInformation: () => {} };
+let dataBaseServiceStub = { FetchDistanceTargetByDate: (date: Date) => {} };
+let dataBaseInterface: DatabaseServiceInterface = <DatabaseServiceInterface>{};
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
-    spyOn(dataBaseServiceStub, 'GetUserInformation').and.returnValue(Observable.of({email: 'AAA@gmail.com', name: 'AAA'}));
+    let dbObj = jasmine.createSpyObj<DatabaseServiceInterface>('db', ['FetchDistanceTargetByDate']);
+    // dataBaseInterface.FetchDistanceTargetByDate = jasmine.createSpy('FetchDistanceTargetByDate');
+    /*spyOn(dataBaseInterface, 'FetchDistanceTargetByDate').and.callFake(function(args){
+      return Observable.of({date: new Date(), distance: 12});
+    });*/
 
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
       providers: [
-        {provide: DatabaseService, useValue: dataBaseServiceStub}
+        {
+          provide: 'DatabaseServiceInterface',
+          useExisting: dbObj 
+        }
       ]
     }).compileComponents();
   }));
@@ -38,15 +46,15 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('app works!');
   }));
 
-  it('should render name and email', async(() => {
+  it('should render distance', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('app works!');
 
     let liElement = compiled.querySelector('p');
-    expect(liElement.textContent).toContain('userName: AAA');
-    liElement = liElement.nextElementSibling;
-    expect(liElement.textContent).toContain('userEmail: AAA@gmail.com');
+    expect(liElement.textContent).toContain('targetDistance: 12');
+    // liElement = liElement.nextElementSibling;
+    // expect(liElement.textContent).toContain('userEmail: AAA@gmail.com');
   }));
 });

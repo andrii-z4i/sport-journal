@@ -1,4 +1,3 @@
-import { DatabaseService } from './services/database.service';
 import { firebaseConfig } from './firebase.configuration';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -7,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { DatabaseServiceInterface } from './services/database.service.interface';
+import { DatabaseService } from './services/database.service';
 
 import { AppComponent } from './app.component';
 
@@ -23,7 +24,11 @@ import { AppComponent } from './app.component';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
   ],
   providers: [
-    DatabaseService
+    DatabaseService,
+    {
+      provide: DatabaseServiceInterface,
+      useExisting: DatabaseService
+    }
   ],
   bootstrap: [AppComponent]
 })

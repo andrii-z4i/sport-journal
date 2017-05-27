@@ -1,6 +1,6 @@
 import { UserInformation } from './../models/user-information.model';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from "rxjs/Rx";
 import { TestBed, inject } from '@angular/core/testing';
 
 import { DatabaseService } from './database.service';

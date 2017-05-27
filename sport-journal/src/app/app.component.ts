@@ -1,8 +1,9 @@
 import { UserInformation } from './models/user-information.model';
-import { DatabaseService } from './services/database.service';
+import { DatabaseServiceInterface } from './services/database.service.interface';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs/Subscription";
+import {DistanceTarget} from './models/distance-target.model';
 
 @Component({
   selector: 'app-root',
@@ -12,21 +13,22 @@ import { Subscription } from "rxjs/Subscription";
 export class AppComponent implements OnDestroy {
   
   title = 'app works!';
-  email: string = null;
-  name: string = null;
+  distance: number = null;
 
-  private userInfo: Subscription;
+  private targetSubscription: Subscription;
   
-  constructor(dataBaseService: DatabaseService) {
-    this.userInfo = dataBaseService.GetUserInformation().subscribe(
+  constructor(dataBaseService: DatabaseServiceInterface) {
+
+    this.targetSubscription = dataBaseService.FetchDistanceTargetByDate(new Date()).subscribe(
       value => {
-        this.email = value.email;
-        this.name = value.name;
+        this.distance = value.distance;
       }
     );
+
   }
+
   ngOnDestroy(): void {
-    this.userInfo.unsubscribe();
+    this.targetSubscription.unsubscribe();
   }
   
 }
