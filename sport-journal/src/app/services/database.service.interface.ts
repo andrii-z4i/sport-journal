@@ -8,17 +8,17 @@ import {IngestionRecord} from '../models/ingestion-record.model';
 export abstract class DatabaseServiceInterface {
   // targets
   FetchDistanceTargetByDate: (date: Date) => Observable<DistanceTarget>;
-  FetchWeightTargetByDate: (date: Date) => Observable<WeightTarget> | WeightTarget;
+  FetchWeightTargetByDate: (date: Date) => Observable<WeightTarget>;
 
-  StoreDistanceTarget: (target: DistanceTarget) => Observable<void> | void;
-  StoreWeightTarget: (target: WeightTarget) => Observable<void> | void;
+  StoreDistanceTarget: (target: DistanceTarget) => Observable<void>;
+  StoreWeightTarget: (target: WeightTarget) => Observable<void>;
 
   // records
-  FetchWeightRecordsByDate: (date: Date) => Observable<WeightRecord[]> | WeightRecord[];
-  FetchDistanceRecordsByDate: (date: Date) => Observable<DistanceRecord[]> | DistanceRecord[];
-  FetchIngestionRecordsByDate: (date: Date) => Observable<IngestionRecord[]> | IngestionRecord[];
+  FetchWeightRecordsByDate: (date: Date) => Observable<WeightRecord[]>;
+  FetchDistanceRecordsByDate: (date: Date) => Observable<DistanceRecord[]>;
+  FetchIngestionRecordsByDate: (date: Date) => Observable<IngestionRecord[]>;
 
-  StoreDistanceRecord: (record: DistanceRecord) => Observable<void> | void;
-  StoreWeightRecord: (record: WeightRecord) => Observable<void> | void;
-  StoreIngestionRecord: (record: IngestionRecord) => Observable<void> | void;
+  StoreDistanceRecord: (record: DistanceRecord) => Observable<void>;
+  StoreWeightRecord: (record: WeightRecord) => Observable<void>;
+  StoreIngestionRecord: (record: IngestionRecord) => Observable<void>;
 }
